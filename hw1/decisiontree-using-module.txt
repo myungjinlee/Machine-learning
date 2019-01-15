@@ -1,0 +1,46 @@
+"""
+==========================
+Text export from Estimator
+==========================
+
+An example text export of :class:`id3.id3.Id3Estimator` with
+:file:`id3.export.export_text`
+"""
+from id3 import Id3Estimator, export_text
+import numpy as np
+
+feature_names = ["Occupied",
+                 "Prices",
+                 "Music",
+                 "Location","VIP", "Favorite Beer", "Enjoy"]
+
+X = np.array([["High", "Expensive", "Load", "Talpiot", "No", "No"],
+["High", "Expensive", "Load", "City-Center", "Yes", "No"],
+["Moderate", "Normal", "Quiet", "City-Center", "No", "Yes"],
+["Moderate", "Expensive", "Quiet", "German-Colony", "No", "No"],
+["Moderate", "Expensive", "Quiet", "German-Colony", "Yes", "Yes"],
+["Moderate", "Normal", "Quiet", "Ein-Karem", "No", "No"],
+["Low", "Normal", "Quiet", "Ein-Karem", "No", "No"],
+["Moderate", "Cheap", "Load", "Mahane-Yehuda", "No", "No"],
+["High", "Expensive", "Load", "City-Center", "Yes", "Yes"],
+["Low", "Cheap", "Quiet", "City-Center", "No", "No"],
+["Moderate", "Cheap", "Load", "Talpiot", "No", "Yes"],
+["Low", "Cheap", "Quiet", "Talpiot", "Yes", "Yes"],
+["Moderate", "Expensive", "Quiet", "Mahane-Yehuda", "No", "Yes"],
+["High", "Normal", "Load", "Mahane-Yehuda", "Yes", "Yes"],
+["Moderate", "Normal", "Load", "Ein-Karem", "No", "Yes"],
+["High", "Normal", "Quiet", "German-Colony", "No", "No"],
+["High", "Cheap", "Load", "City-Center", "No", "Yes"],
+["Low", "Normal", "Quiet", "City-Center", "No", "No"],
+["Low", "Expensive", "Load", "Mahane-Yehuda", "No", "No"],
+["Moderate", "Normal", "Quiet", "Talpiot", "No", "No"],
+["Low", "Normal", "Quiet", "City-Center", "No", "No"],
+["Low", "Cheap", "Load", "Ein-Karem", "Yes", "Yes"]])
+			  
+
+y = np.array(["No","Yes","Yes","No","Yes","Yes","No","Yes","Yes","No","No","No","Yes","Yes","Yes","No","Yes","No","No","Yes","Yes","Yes"])
+
+clf = Id3Estimator()
+clf.fit(X, y, check_input=True)
+
+print(export_text(clf.tree_, feature_names))
